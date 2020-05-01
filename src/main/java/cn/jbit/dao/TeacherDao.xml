@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybaits.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jbit.dao.TeacherDao"> 
+
+    <select id="login" resultType="Teacher"> 
+       SELECT * FROM `teacher` WHERE `teacherID`=#{account} and `password`=#{password}
+   </select>
+   
+   <update id="updateTeacher"  parameterType="Teacher">
+   UPDATE `academic`.`teacher`
+	SET 
+	  `password` = #{password},
+	  `name` = #{name},
+	  `gender` = #{gender},
+	  `age` = #{age},
+	  `grade` = #{grade},
+	  `phone` = #{phone},
+	  `courseName` = #{courseName}
+	WHERE `teacherID` = #{teacherID};
+   </update>
+   
+   <select id="getCourses" resultType="Course"> 
+   		SELECT * FROM course LIMIT #{pageNO},#{pagesize}
+   </select>
+   
+   <select id="getCoursesCount" resultType="int">
+    	select count(*) from course
+   </select>
+   
+   <insert id="AddCurriculum" parameterType="Curriculum">
+   		INSERT INTO `academic`.`curriculum`
+            (
+             `courseId`,
+             `classTime`,
+             `teacherId`,
+             `studentIds`,
+             `teachername`)
+		VALUES (
+	        #{courseId},
+	        #{classTime},
+	        #{teacherId},
+	        #{studentIds},
+	        #{teachername});
+   </insert>
+   
+   <select id="getCourse" parameterType="int" resultType="Course">
+   		select * from course where id=#{id}
+   </select>
+   
+   <update id="updateCourse" parameterType="int">
+	   	UPDATE `academic`.`course`
+		SET `courseStatus` = 1
+		WHERE `id` = #{id};
+   </update>
+   
+   <select id="getCurriculums"   resultMap="CurriculumsMap">
+	 SELECT c.`id` curriculumid,c.`classTime`,c.`courseId`,c.`studentIds`,c.`teacherId`,
+	e.`id` courseid,e.`classroomId`,e.`courseName`,e.`courseStatus`,e.`Uploadtime`
+	 FROM curriculum c,course e WHERE c.`courseId`=e.id AND c.`teacherId`=#{teacherId}  LIMIT #{pageNo},#{pageSize}
+   </select>
+   <resultMap type="Curriculum" id="CurriculumsMap">
+        <id property="id" column="curriculumid"/>
+        <result property="classTime" column="classTime"/>
+         <result property="courseId" column="courseId"/>
+          <result property="studentIds" column="studentIds"/>
+           <result property="teacherId" column="teacherId"/>
+        <association property="course" javaType="Course">
+            <id property="id" column="courseid"/>
+            <result property="classroomId" column="classroomId"/>
+            <result property="courseName" column="courseName"/>
+            <result property="courseStatus" column="courseStatus"/>
+            <result property="Uploadtime" column="Uploadtime"/>
+        </association>
+    </resultMap>
+    
+    <select id="getCurriculumsCount" parameterType="String" resultType="int">
+    	SELECT COUNT(*) FROM `curriculum` WHERE `teacherId`=#{teacherId}
+    </select>
+    
+    <select id="getQuestions" parameterType="int" resultMap="QuestionsMap">
+SELECT q.`id` qid,q.`studentId`,q.`problem`,q.`time`,
+s.`id` sid,s.`studentID`,s.`password`,s.`name`,s.`gender`,s.`grade`,s.`classname`
+FROM `question` q,`student` s WHERE q.`studentId`=s.`studentID`  
+<if test="studentId!=null and studentId!='' ">
+AND q.studentId=#{studentId}
+</if>
+ LIMIT #{pageNo},#{pageSize}
+    </select>
+    
+    <resultMap type="Question" id="QuestionsMap">
+        <id property="id" column="qid"/>
+        <result property="studentId" column="studentId"/>
+         <result property="time" column="time"/>
+          <result property="problem" column="problem"/> 
+        <association property="student" javaType="Student">
+            <id property="id" column="sid"/>
+            <result property="studentID" column="studentID"/>
+            <result property="password" column="password"/>
+            <result property="name" column="name"/>
+            <result property="gender" column="gender"/>
+            <result property="grade" column="grade"/>
+            <result property="classname" column="classname"/>
+        </association>
+    </resultMap>
+    
+    
+    <select id="getQuestionsCount" resultType="int">
+    	select count(*) from question
+    	<if test="studentId!=null and studentId!='' ">
+			where `studentId`= #{studentId}
+		</if>
+    </select>
+    
+    <select id="getAnswers" resultType="Answer">
+   	 	SELECT * FROM `answer` WHERE `questionid`=#{questionid}
+    </select>
+    
+    <insert id="Addanswer" parameterType="Answer">
+    	INSERT INTO `academic`.`answer`
+            (
+             `content`,
+             `questionid`,
+             `answertime`,
+             `teacherName`)
+		VALUES ( 
+	        #{content},
+	        #{questionid},
+	        #{answertime},
+	        #{teacherName});	
+    </insert>
+    
+     <select id="getStudents" resultType="Student">
+   		SELECT * FROM student LIMIT #{pageNO},#{pagesize}
+   </select>
+   
+    <select id="getCountStudent" resultType="int">
+   		SELECT COUNT(*) FROM student
+   </select>
+   
+   <insert id="Addachievement" parameterType="Achievement">
+   		INSERT INTO `academic`.`achievement`
+            (
+             `subject`,
+             `fraction`,
+             `studentid`,
+             `EntryTime`)
+		VALUES (
+	        #{subject},
+	        #{fraction},
+	        #{studentid},
+	        #{EntryTime});
+   </insert>
+</mapper>

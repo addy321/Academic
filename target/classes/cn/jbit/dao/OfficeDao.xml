@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybaits.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jbit.dao.OfficeDao"> 
+
+    <select id="login" resultType="Office"> 
+       SELECT * FROM `office` WHERE `officeId`=#{account} and `password`=#{password}
+   </select>
+   
+   <update id="update"  parameterType="Office">
+	    UPDATE `academic`.`office`
+		SET  `password` = #{password}
+		WHERE `officeId` =  #{officeId};
+   </update>
+   
+   <insert id="AddAnnouncement" parameterType="Announcement">
+   INSERT INTO `academic`.`announcement`
+            (`content`,
+             `releaseTime`,
+             `title`,
+             `frequency`)
+	VALUES (#{content},
+        #{releaseTime},
+        #{title},
+        #{frequency});
+   </insert>
+   
+   <select id="getAnnouncements" resultType="Announcement">
+   		SELECT * FROM `announcement` where title like'%${title}%' LIMIT #{pageNO},#{pagesize} 
+   </select>
+   
+   <select id="getStudents" resultType="Student">
+   		SELECT * FROM student LIMIT #{pageNO},#{pagesize}
+   </select>
+   
+   <select id="geTeachers" resultType="Teacher">
+   		SELECT * FROM teacher LIMIT #{pageNO},#{pagesize}
+   </select>
+   
+   <select  id="geTeachersOptions" resultType="Teacher">
+   		SELECT `teacherID`,`name` FROM teacher
+   </select>
+   
+   <select id="getCountAnnouncement" resultType="int">
+   		SELECT COUNT(*) FROM announcement where title like'%${title}%'
+   </select>
+   
+   <select id="getCountTeachers" resultType="int">
+   		SELECT COUNT(*) FROM teacher
+   </select>
+   
+   <select id="getCountStudent" resultType="int">
+   		SELECT COUNT(*) FROM student
+   </select>
+   
+   <delete id="deleteStudent" parameterType="int">
+   	 delete from student where id=#{id}
+   </delete>
+   
+   <delete id="deleteTeachers" parameterType="int">
+     delete from teacher where id=#{id}
+   </delete>
+   
+   <insert id="AddStudent" parameterType="Student">
+   INSERT INTO `academic`.`student`
+            (
+             `studentID`,
+             `password`,
+             `name`,
+             `gender`,
+             `grade`,
+             `classname`)
+VALUES (
+        #{studentID},
+        #{password},
+        #{name},
+        #{gender},
+        #{grade},
+        #{classname});
+   </insert>
+   
+   <insert id="AddTeachers" parameterType="Teacher">
+   INSERT INTO `academic`.`teacher`
+            (
+             `teacherID`,
+             `password`,
+             `name`,
+             `gender`,
+             `age`,
+             `grade`,
+             `phone`,
+             `courseName`)
+VALUES (
+        #{teacherID},
+        #{password},
+        #{name},
+        #{gender},
+        #{age},
+        #{grade},
+        #{phone},
+        #{courseName});
+   </insert>
+   
+   <select id="getStudent" resultType="Student">
+   	select * from  student where studentID=#{account}
+   </select>
+   <select id="getTeacher" resultType="Teacher">
+   	select * from  teacher where teacherID=#{account}
+   </select>
+   
+   <select id="getClassrooms" resultType="Classroom">
+   SELECT * FROM `classroom` LIMIT #{pageNO},#{pagesize}
+   </select>
+   
+   <delete id="deleteClassrooms">
+   DELETE FROM `academic`.`classroom` WHERE `id` = #{id};
+   </delete>
+   
+   <insert id="AddClassrooms">
+   INSERT INTO `academic`.`classroom`
+            (
+             `className`,
+             `status`,
+             `Types`,
+             `size`)
+	VALUES (
+        #{className},
+        #{status},
+        #{types},
+        #{size});
+   </insert>
+   
+   <select id="getClassroomsCount" resultType="int">
+   		SELECT COUNT(*) FROM `classroom`
+   </select>
+   
+   <insert id="Addcourse" parameterType="Course">
+   		INSERT INTO `academic`.`course`
+            (
+             `Uploadtime`,
+             `courseName`,
+             `courseStatus`,
+             `classroomId`)
+		VALUES (
+			#{Uploadtime},
+	        #{courseName},
+	        #{courseStatus},
+	        #{classroomId});
+   </insert>
+   
+   <select id="getClassroom" resultType="Classroom">
+   	select * from `classroom` where
+   	<if test="id!=null and id!=0">
+   	 	id=#{id} 
+   	</if>
+   	<if test="className!=null and className!=''">
+   	 	className=#{className} 
+   	</if>
+   </select>
+   
+   <update id="updateClassrooms" parameterType="String">
+   		UPDATE `academic`.`classroom`
+		SET `status` = '1'
+		WHERE `className` = #{className};
+   </update>
+</mapper>

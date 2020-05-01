@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybaits.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jbit.dao.StudentDao">
+   <select id="login" resultType="Student"> 
+       SELECT * FROM `student` WHERE `studentID`=#{account} and `password`=#{password}
+   </select>
+   
+   <update id="update" parameterType="Student">
+      UPDATE `academic`.`student`
+		SET 
+		  `password` = #{password},
+		  `name` = #{name},
+		  `gender` = #{gender},
+		  `grade` = #{grade},
+		  `classname` = #{classname}
+		WHERE `id` = #{studentID};
+   </update>
+   
+   <insert id="addquestion"  parameterType="Question">
+   INSERT INTO `academic`.`question`
+            ( 
+             `studentId`,
+             `problem`,
+             `time`)
+	VALUES ( 
+        #{studentId},
+        #{problem},
+        #{time});
+   </insert>
+   
+   
+   <select id="getCurriculums" parameterType="int" resultMap="CurriculumsMap">
+   	SELECT c.`id` curriculumid,c.`classTime`,c.`courseId`,c.`studentIds`,c.`teacherId`,c.`teachername`,
+	e.`id` courseid,e.`classroomId`,e.`courseName`,e.`courseStatus`,e.`Uploadtime`
+	 FROM curriculum c,course e WHERE c.`courseId`=e.id LIMIT #{pageNO},#{pageSize}
+   </select>
+   
+   
+      <resultMap type="Curriculum" id="CurriculumsMap">
+        <id property="id" column="curriculumid"/>
+        <result property="classTime" column="classTime"/>
+         <result property="courseId" column="courseId"/>
+          <result property="studentIds" column="studentIds"/>
+           <result property="teacherId" column="teacherId"/>
+           <result property="teachername" column="teachername"/>
+        <association property="course" javaType="Course">
+            <id property="id" column="courseid"/>
+            <result property="classroomId" column="classroomId"/>
+            <result property="courseName" column="courseName"/>
+            <result property="courseStatus" column="courseStatus"/>
+            <result property="Uploadtime" column="Uploadtime"/>
+        </association>
+    </resultMap>
+    
+    <select id="getCurriculumsCount" resultType="int">
+     	SELECT COUNT(*) FROM `curriculum`
+    </select>
+    
+    <update id="UpdateCurriculum" parameterType="String">
+    UPDATE `academic`.`curriculum`
+	SET 
+	  `studentIds` = #{studentIds}
+	WHERE `id` = #{id};
+    </update>
+    
+    <select id="getAchievements" parameterType="int" resultType="Achievement">
+    		SELECT * FROM `achievement` where studentid=#{id} LIMIT #{pageNO},#{pageSize}
+    </select>
+    
+     <select id="getAchievementCount" parameterType="int" resultType="int">
+    		SELECT count(*) FROM `achievement` where studentid=#{id} 
+    </select>
+</mapper>

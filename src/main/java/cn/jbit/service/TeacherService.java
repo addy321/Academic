@@ -30,4 +30,5 @@ public interface TeacherService {
 	public int Addachievement(Achievement achievement);
 	public List<Mustbedone> getMustbedones(int pageNO);//查询课程
 	public int getMustbedonesCount();
+	public int updateAge();
 }

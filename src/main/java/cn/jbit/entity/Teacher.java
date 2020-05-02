@@ -1,5 +1,7 @@
 package cn.jbit.entity;
 
+import java.util.Date;
+
 public class Teacher {
 	private int id;
 	public int getId() {
@@ -13,31 +15,20 @@ public class Teacher {
 	private String name;
 	private int gender;
 	private int age;
-	private int grade;
 	private String phone;
 	private String courseName;
+	private Date createTime;
 	
-	@Override
-	public String toString() {
-		return "Teacher [id=" + id + ", teacherID=" + teacherID + ", password=" + password + ", name=" + name
-				+ ", gender=" + gender + ", age=" + age + ", grade=" + grade + ", phone=" + phone + ", courseName="
-				+ courseName + "]";
-	}
-	public Teacher(String teacherID, String password, String name, int gender, int age, int grade, String phone,
-			String courseName) {
-		super();
-		this.teacherID = teacherID;
-		this.password = password;
-		this.name = name;
-		this.gender = gender;
-		this.age = age;
-		this.grade = grade;
-		this.phone = phone;
-		this.courseName = courseName;
-	}
+	
 	public Teacher() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 	public String getTeacherID() {
 		return teacherID;
@@ -68,12 +59,6 @@ public class Teacher {
 	}
 	public void setAge(int age) {
 		this.age = age;
-	}
-	public int getGrade() {
-		return grade;
-	}
-	public void setGrade(int grade) {
-		this.grade = grade;
 	}
 	public String getPhone() {
 		return phone;

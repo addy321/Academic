@@ -20,4 +20,5 @@ public interface StudentService {
 	public int getAchievementCount(int id);
 	public  List<Mustbedone> getMustbedones(int pageNO,int grade,String className);//所有课程
 	public Student getStudent(int id);
+	public int updateAge();
 }

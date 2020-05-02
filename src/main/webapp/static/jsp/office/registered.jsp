@@ -101,18 +101,7 @@
 				  </div>
 				  
 				  
-				   <div class="form-group teacher">
-				    <label class="col-sm-2 control-label">教授年级</label>
-				    <div class="col-sm-10">
-				      <select id="grade2" style="height: 30px;">
-					   	 <option value="0">请选择年级</option>
-					   	 <option value="1">一年级</option>
-					   	 <option value="2">二年级</option>
-					   	 <option value="3">三年级</option>
-					   	 <option value="4">四年级</option>
-					   </select>
-				    </div>
-				  </div>
+				
 				  
 				  <div class="form-group teacher">
 				    <label class="col-sm-2 control-label">联系电话</label>
@@ -182,7 +171,6 @@ function registered(){
 	var name= $("input[name='name']").val().trim()
 	var classa= $("classname]").val()
 	var grade=  $("#grade").val()
-	var grade2= $("#grade2").val()
 	var phone= $("input[name='phone']").val().trim()
 	var age= $("input[name='age']").val().trim()
 	var courseName= $("input[name='courseName']").val().trim()
@@ -200,8 +188,8 @@ function registered(){
 				alert("请完成所有选项和填空。")
 			}
 		}else if(Identity==1){
-			if(grade2!=0 && phone!="" && age!="" && courseName!=""){
-				var teachers={"teacherID":account,"password":pass,"name":name,"gender":gender,"age":age,"grade":grade2,"phone":phone,"courseName":courseName}
+			if(phone!="" && age!="" && courseName!=""){
+				var teachers={"teacherID":account,"password":pass,"name":name,"gender":gender,"age":age,"phone":phone,"courseName":courseName}
 				console.log(teachers)
 				isTeachers(teachers)
 			}else{

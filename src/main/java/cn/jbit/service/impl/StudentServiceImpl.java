@@ -66,4 +66,15 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.getStudent(id);
 	}
 
+	public int updateAge() {
+		while(true) { 
+            try {
+            	studentDao.updateAge();
+                Thread.sleep(3000);// 主线程每隔3秒钟
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+	}
+
 }

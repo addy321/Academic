@@ -17,7 +17,7 @@
 	</body>
 	<script>
 	var ListMatch={"gender":["女","男"],"grade":["","一年级","二年级","三年级"]}
-	var ListTitle=['编号','教师账号','密码','姓名','性别','年龄','所教班级','电话',"所教课程名","操作"]
+	var ListTitle=['编号','教师账号','密码','姓名','性别','年龄','电话',"所教课程名","操作"]
 	var ListFeatures={"del":"删除"}
 		showData(1)//请求数据
 		function showData(pageNO){

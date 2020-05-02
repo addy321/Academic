@@ -1,5 +1,7 @@
 package cn.jbit.entity;
 
+import java.util.Date;
+
 public class Student {
 	private int id;
 	public int getId() {
@@ -13,7 +15,8 @@ public class Student {
 	private String name;
 	private int gender;
 	private int grade;
-	public String classname;
+	private String classname;
+	private Date createTime;
 	public String getStudentID() {
 		return studentID;
 	}
@@ -50,9 +53,18 @@ public class Student {
 	public void setClassname(String classname) {
 		this.classname = classname;
 	}
+	
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", studentID=" + studentID + ", password=" + password + ", name=" + name
-				+ ", gender=" + gender + ", grade=" + grade + ", classname=" + classname + "]";
+				+ ", gender=" + gender + ", grade=" + grade + ", classname=" + classname + ", createTime=" + createTime
+				+ "]";
 	}
+	
 }

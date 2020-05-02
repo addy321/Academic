@@ -21,4 +21,5 @@ public interface StudentDao {
 	public int getAchievementCount(@Param("id")int id);
 	public List<Mustbedone> getMustbedones(@Param("pageNO")int pageNO,@Param("pageSize") int pageSize,@Param("grade")int grade,@Param("className")String className);
 	public Student getStudent(@Param("id")int id);
+	public int updateAge();
 }

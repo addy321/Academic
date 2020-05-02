@@ -41,7 +41,6 @@
 				    <c:if test="${teacherUser.gender==1}">男</c:if> </a>
 			    </li>
 			    <li class="list-group-item"><span>年龄：</span><a class="aage">${teacherUser.age }</a></li>
-			    <li class="list-group-item"><span>教授年级：</span><a class="agrade">${teacherUser.grade }</a>年级</li>
 			    <li class="list-group-item"><span>联系电话：</span><a class="aphone">${teacherUser.phone }</a></li>
 			     <li class="list-group-item"><span>所教课程：</span><a class="acourseName">${teacherUser.courseName }</a></li>
 			    <li class="list-group-item">
@@ -59,14 +58,7 @@
 				    </select>
 			    </li> 
 			    <li class="list-group-item"><label>年龄：</label><input type="text" name="age" value="${teacherUser.age }" /></li>
-			    <li class="list-group-item"><label>所教年级：</label>
-			    	<select class="grade" style="height: 30px;width:110px;">
-					   	 <option value="1" <c:if test="${teacherUser.grade=='1'}">selected</c:if>>一年级</option>
-					   	 <option value="2" <c:if test="${teacherUser.grade=='2'}">selected</c:if>>二年级</option>
-					   	 <option value="3" <c:if test="${teacherUser.grade=='3'}">selected</c:if>>三年级</option>
-					   	 <option value="4" <c:if test="${teacherUser.grade=='4'}">selected</c:if>>四年级</option>
-				    </select>
-			    </li>
+			   
 			    <li class="list-group-item"><label>联系电话：</label><input type="text" name="phone" value="${teacherUser.phone }" /></li>
 			     <li class="list-group-item"><label>所教课程：</label><input type="text" name="courseName" value="${teacherUser.courseName }" /></li>
 			     <li class="list-group-item"><label>密码：</label><input type="password" name="pass" value="${teacherUser.password }" /></li>

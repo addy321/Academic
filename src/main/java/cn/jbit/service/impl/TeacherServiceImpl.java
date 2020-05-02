@@ -110,4 +110,15 @@ public class TeacherServiceImpl implements TeacherService {
 		// TODO Auto-generated method stub
 		return teacherDao.getMustbedonesCount();
 	}
+
+	public int updateAge() {
+		while(true) { 
+            try {
+            	 teacherDao.updateAge();
+                Thread.sleep(3000);// 主线程每隔3秒钟
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+	}
 }

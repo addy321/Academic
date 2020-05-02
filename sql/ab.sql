@@ -82,7 +82,7 @@ CREATE TABLE `classroom` (
 
 /*Data for the table `classroom` */
 
-insert  into `classroom`(`id`,`className`,`status`,`Types`,`size`) values (1,'C123q',1,0,0),(3,'C4345q',1,0,0),(4,'Cqdqq1',1,0,0),(5,'Cdqwq',1,0,0),(6,'C3431',1,0,0),(7,'Cdafq1',1,0,0),(8,'cd12',1,0,0),(9,'dasda',0,0,0),(10,'dasdada',1,0,0),(11,'Cdsada',0,0,0),(12,'Casda',0,0,1),(13,'Csdada',0,0,0);
+insert  into `classroom`(`id`,`className`,`status`,`Types`,`size`) values (1,'C123q',1,0,0),(3,'C4345q',1,0,0),(4,'Cqdqq1',1,0,0),(5,'Cdqwq',1,0,0),(6,'C3431',1,0,0),(7,'Cdafq1',1,0,0),(8,'cd12',1,0,0),(9,'dasda',0,0,0),(10,'dasdada',1,0,0),(11,'Cdsada',1,0,0),(12,'Casda',0,0,1),(13,'Csdada',1,0,0);
 
 /*Table structure for table `course` */
 
@@ -95,11 +95,11 @@ CREATE TABLE `course` (
   `courseStatus` int(2) NOT NULL,
   `classroomId` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 /*Data for the table `course` */
 
-insert  into `course`(`id`,`Uploadtime`,`courseName`,`courseStatus`,`classroomId`) values (9,'2020-04-02 20:45:23','数据来结构讲解',1,'C123q'),(10,'2020-04-03 15:22:34','SSM框架整合',1,'Cqdqq1'),(11,'2020-04-03 15:23:08','微服务分布式',1,'C4345q'),(12,'2020-04-05 19:21:06','C语言教程',1,'Cdafq1'),(13,'2020-04-05 21:35:52','语文',1,'C3431'),(14,'2020-04-09 19:14:42','1asfaf',1,'Cdqwq'),(15,'2020-04-09 19:14:49','dadsad',1,'cd12'),(16,'2020-04-30 19:38:12','数学',1,'dasdada');
+insert  into `course`(`id`,`Uploadtime`,`courseName`,`courseStatus`,`classroomId`) values (9,'2020-04-02 20:45:23','数据来结构讲解',1,'C123q'),(10,'2020-04-03 15:22:34','SSM框架整合',1,'Cqdqq1'),(11,'2020-04-03 15:23:08','微服务分布式',1,'C4345q'),(12,'2020-04-05 19:21:06','C语言教程',1,'Cdafq1'),(13,'2020-04-05 21:35:52','语文',1,'C3431'),(14,'2020-04-09 19:14:42','1asfaf',1,'Cdqwq'),(15,'2020-04-09 19:14:49','dadsad',1,'cd12'),(16,'2020-04-30 19:38:12','数学',1,'dasdada'),(17,'2020-05-01 22:48:57','C++教程',1,'Cdsada'),(18,'2020-05-01 22:49:11','Javaee教程',0,'Csdada');
 
 /*Table structure for table `curriculum` */
 
@@ -113,11 +113,11 @@ CREATE TABLE `curriculum` (
   `studentIds` varchar(255) NOT NULL,
   `teachername` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 /*Data for the table `curriculum` */
 
-insert  into `curriculum`(`id`,`courseId`,`classTime`,`teacherId`,`studentIds`,`teachername`) values (7,11,'2020-01-01 00:00:00','test1','[]',''),(8,10,'2020-02-02 00:00:00','test1','[]',''),(9,9,'2020-02-02 00:00:00','test3','[]',''),(10,12,'2020-02-03 00:00:00','test1','[1]','峡谷蔡文姬'),(11,13,'2020-02-01 00:00:00','test3','[]','峡谷蔡文姬'),(12,15,'2020-02-02 00:00:00','test1','[]','王小二'),(13,15,'2020-02-02 17:55:29','test1','[]','王小二'),(14,14,'2020-04-11 10:53:05','test1','[]','王小二'),(15,16,'2020-02-02 00:00:00','test1','[1]','王小二');
+insert  into `curriculum`(`id`,`courseId`,`classTime`,`teacherId`,`studentIds`,`teachername`) values (7,11,'2020-01-01 00:00:00','test1','[]',''),(8,10,'2020-02-02 00:00:00','test1','[]',''),(9,9,'2020-02-02 00:00:00','test3','[]',''),(10,12,'2020-02-03 00:00:00','test1','[1]','峡谷蔡文姬'),(11,13,'2020-02-01 00:00:00','test3','[]','峡谷蔡文姬'),(12,15,'2020-02-02 00:00:00','test1','[]','王小二'),(13,15,'2020-02-02 17:55:29','test1','[]','王小二'),(14,14,'2020-04-11 10:53:05','test1','[]','王小二'),(15,16,'2020-02-02 00:00:00','test1','[1]','王小二'),(16,17,'2020-02-03 00:00:00','test1','[]','王小二');
 
 /*Table structure for table `mustbedone` */
 
@@ -131,10 +131,13 @@ CREATE TABLE `mustbedone` (
   `teacherId` varchar(30) NOT NULL,
   `grade` int(1) NOT NULL,
   `className` varchar(30) NOT NULL,
+  `teacherName` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `mustbedone` */
+
+insert  into `mustbedone`(`id`,`courseName`,`classroomId`,`classTime`,`teacherId`,`grade`,`className`,`teacherName`) values (1,'测试必修课','dasda','2020-01-01 00:00:00','test1',3,'C3','王小二');
 
 /*Table structure for table `office` */
 
@@ -178,12 +181,13 @@ CREATE TABLE `student` (
   `gender` int(2) NOT NULL,
   `grade` int(1) NOT NULL,
   `classname` varchar(10) NOT NULL,
+  `createTime` datetime NOT NULL,
   PRIMARY KEY (`id`,`studentID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `student` */
 
-insert  into `student`(`id`,`studentID`,`password`,`name`,`gender`,`grade`,`classname`) values (1,'test2','1234','菜前坤',0,2,'C1vhjb'),(2,'test3','1234','峡谷蔡文姬',1,2,'C1231q');
+insert  into `student`(`id`,`studentID`,`password`,`name`,`gender`,`grade`,`classname`,`createTime`) values (1,'test2','1234','菜前坤',0,2,'C1vhjb','2020-05-02 09:49:01'),(2,'test3','1234','峡谷蔡文姬',1,2,'C1231q','2020-05-02 09:49:04');
 
 /*Table structure for table `teacher` */
 
@@ -196,15 +200,15 @@ CREATE TABLE `teacher` (
   `name` varchar(10) NOT NULL,
   `gender` int(1) NOT NULL,
   `age` int(3) NOT NULL,
-  `grade` int(1) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `courseName` varchar(50) NOT NULL,
+  `createTime` datetime NOT NULL,
   PRIMARY KEY (`id`,`teacherID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `teacher` */
 
-insert  into `teacher`(`id`,`teacherID`,`password`,`name`,`gender`,`age`,`grade`,`phone`,`courseName`) values (1,'test3','1234','英雄王二小',1,20,2,'19976618070','Java'),(2,'test1','1234','王小二',0,12,2,'19976618070','C#');
+insert  into `teacher`(`id`,`teacherID`,`password`,`name`,`gender`,`age`,`phone`,`courseName`,`createTime`) values (1,'test3','1234','英雄王二小',1,23,'19976618070','Java','2020-05-22 09:48:43'),(2,'test1','1234','王小二',1,20,'19976618070','C#','2020-05-02 09:48:48');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

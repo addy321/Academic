@@ -91,4 +91,8 @@
     SELECT * FROM `student` WHERE id=#{id}
     </select>
     
+    <update id="updateAge">
+    
+  		UPDATE student SET age = age+ROUND(DATEDIFF(CURDATE(), '2017-05-22 09:48:43')/365.2422)
+    </update>
 </mapper>

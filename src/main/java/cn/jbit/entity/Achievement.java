@@ -28,7 +28,7 @@ public class Achievement {
 		this.fraction = fraction;
 	}
 	public Integer getStudentid() {
-		return studentid==0?null:studentid;
+		return studentid;
 	}
 	public void setStudentid(Integer studentid) {
 		this.studentid = studentid;

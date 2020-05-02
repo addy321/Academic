@@ -32,4 +32,5 @@ public interface TeacherDao {
 	public int Addachievement(Achievement achievement);//添加成绩
 	public List<Mustbedone> getMustbedones(@Param("pageNO")int pageNO,@Param("pagesize") int pagesize);//查询必修课程
 	public int getMustbedonesCount();
+	public int updateAge();
 }

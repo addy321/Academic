@@ -15,9 +15,9 @@
 		</div>
 	</body>
 	<script>
-		var ListTitle=['编号','多媒体教室编号','状态','教室类型','教室大小','操作']
-		var ListFeatures={"del":"删除","showAddcourse":"添加课程"}
-		var ListMatch={"types":["普通教室","多媒体教室"],"size":["大","中","小"],"status":["已安排课程","空教室"]}
+		var ListTitle=['编号','学科','分数','录入时间']
+		var ListFeatures=null
+		var ListMatch=null
 		var id=oneValues() 
 		getCount("/Academic/Student/getAchievementCount",{id:id});//请求数量
 		showData(1) 

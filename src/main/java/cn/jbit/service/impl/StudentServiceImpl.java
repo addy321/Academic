@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import cn.jbit.dao.StudentDao;
 import cn.jbit.entity.Achievement;
 import cn.jbit.entity.Curriculum;
+import cn.jbit.entity.Mustbedone;
 import cn.jbit.entity.Question;
 import cn.jbit.entity.Student;
 import cn.jbit.service.StudentService;
@@ -53,6 +54,16 @@ public class StudentServiceImpl implements StudentService {
 	public int getAchievementCount(int id) {
 		// TODO Auto-generated method stub
 		return studentDao.getAchievementCount(id);
+	}
+
+	public List<Mustbedone> getMustbedones(int pageNO, int grade, String className) {
+		// TODO Auto-generated method stub
+		return studentDao.getMustbedones(pageNO*8-8, 8, grade,className);
+	}
+
+	public Student getStudent(int id) {
+		// TODO Auto-generated method stub
+		return studentDao.getStudent(id);
 	}
 
 }

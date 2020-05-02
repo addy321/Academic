@@ -8,6 +8,7 @@ import cn.jbit.entity.Achievement;
 import cn.jbit.entity.Answer;
 import cn.jbit.entity.Course;
 import cn.jbit.entity.Curriculum;
+import cn.jbit.entity.Mustbedone;
 import cn.jbit.entity.Question;
 import cn.jbit.entity.Student;
 import cn.jbit.entity.Teacher;
@@ -29,4 +30,6 @@ public interface TeacherDao {
 	public List<Student> getStudents(@Param("pageNO")int pageNO,@Param("pagesize") int pagesize);//查询学生
 	public int getCountStudent();//查询学生数量
 	public int Addachievement(Achievement achievement);//添加成绩
+	public List<Mustbedone> getMustbedones(@Param("pageNO")int pageNO,@Param("pagesize") int pagesize);//查询必修课程
+	public int getMustbedonesCount();
 }

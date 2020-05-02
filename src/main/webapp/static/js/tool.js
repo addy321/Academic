@@ -22,15 +22,22 @@ function GenerateTable(DOM,JsonListDate,ListTitle,ListFeatures,ListMatch,pageNO)
 				if(obj=="id"){
 					id=data[obj]
 				}
-				if(ismatch)
-				tableHtml+='<td>'+data[obj]+'</td>'
+				if(ismatch){
+					if(data[obj]!=null)
+					tableHtml+='<td>'+data[obj]+'</td>'
+				}
+				
 			}
-			tableHtml+='<td><div class="dropdown"> <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">请选择'
-			tableHtml+='<span class="caret"></span></button><ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">'
-			for(var features in ListFeatures){
-				tableHtml+='<li role="presentation"> <a role="menuitem" tabindex="-1" href="#" onclick='+features+'('+id+')>'+ListFeatures[features]+'</a></li>'
+			if(ListFeatures!=null){
+				tableHtml+='<td><div class="dropdown"> <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">请选择'
+					tableHtml+='<span class="caret"></span></button><ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">'
+					for(var features in ListFeatures){
+						tableHtml+='<li role="presentation"> <a role="menuitem" tabindex="-1" href="#" onclick='+features+'('+id+')>'+ListFeatures[features]+'</a></li>'
+					}
+					tableHtml+='</ul></div></td></tr>'
 			}
-			tableHtml+='</ul></div></td></tr>'
+			
+			tableHtml+='</tr>'
 		})
 	}else{
 		tableHtml+="<tr><td style='text-align: center;' colspan='"+ListTitle.length+"'>暂无数据</td></tr>"

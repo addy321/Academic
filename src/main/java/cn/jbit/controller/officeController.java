@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.jbit.entity.Announcement;
 import cn.jbit.entity.Classroom;
 import cn.jbit.entity.Course;
+import cn.jbit.entity.Mustbedone;
 import cn.jbit.entity.Office;
 import cn.jbit.entity.Student;
 import cn.jbit.entity.Teacher;
@@ -259,6 +260,19 @@ public class officeController {
 		Map<String, List<Teacher>> map = new HashMap<String, List<Teacher>>(); 
 		List<Teacher> listTeacher=officeService.geTeachersOptions();
 		map.put("data", listTeacher);
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/AddMustbedone",method=RequestMethod.POST,produces = "application/json;charset=utf-8")
+	public Map<String, String> AddMustbedone(Mustbedone mustbedone) {
+		System.out.println(mustbedone.toString());
+		Map<String, String> map = new HashMap<String, String>(); 
+		if(officeService.AddMustbedone(mustbedone)==0) {
+			map.put("data", "新增失败！");
+		}else {
+			map.put("data", "新增成功！");
+		}
 		return map;
 	}
 }

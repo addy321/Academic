@@ -162,4 +162,24 @@ VALUES (
 		SET `status` = '1'
 		WHERE `className` = #{className};
    </update>
+   <insert id="AddMustbedone" parameterType="Mustbedone">
+   		INSERT INTO `academic`.`mustbedone`
+            (
+             `courseName`,
+             `classroomId`,
+             `classTime`,
+             `teacherId`,
+             `grade`,
+             `className`,
+             `teacherName`)
+		VALUES (
+		        #{courseName},
+		        #{classroomId},
+		        #{classTime},
+		        #{teacherId},
+		        #{grade},
+		        #{className},
+		        #{teacherName});
+   </insert>
+   
 </mapper>

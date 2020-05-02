@@ -85,6 +85,7 @@
 				  <li role="presentation"><a href="#" url="TeacherTimetable.jsp">选课情况查询</a></li>
 				  <li role="presentation"><a href="#" url="student.jsp">成绩录入</a></li>
 				   <li role="presentation"><a href="#" url="Reply.jsp">教师答疑</a></li>
+				    <li role="presentation"><a href="#" url="compulsory.jsp">必修课程表</a></li>
 				</ul>
 				<iframe style="width:100%;margin-top: 30px;height: 80%;"  frameborder="no" src=""></iframe>
 			</div>

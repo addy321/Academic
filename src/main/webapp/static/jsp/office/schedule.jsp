@@ -11,10 +11,10 @@
 	<script type="text/javascript" src="/Academic/static/js/tool.js" ></script> 
 </head>
 <style>
-	.Addclassroom,.Addcourse,.Addcurriculum{
+	.Addclassroom,.Addcourse,.AddMustbedone{
 		position: absolute;
 		left:50%;/**左边50%**/
-		top:10%;/**顶部50%**/
+		top:5%;/**顶部50%**/
 		margin-left:-200px;/**左移-50%**/
 		width: 400px;
 		border: 1px #cdb6b6 double;
@@ -52,17 +52,18 @@
 		 </select>
 		<br />
 		<button type="button" class="btn btn-primary" style="width: 100px;" onclick="Addclassroom()">提交</button>
-		<button type="button" class="btn btn-primary" style="width: 100px;" onclick="$('.Addclassroom').addClass('hidden')">关闭</button>
+		<button type="button" class="btn btn-primary" style="width: 100px;" onclick="$('.AddMustbedone').addClass('hidden')">关闭</button>
 	</div>
-	<div class="container Addcurriculum hidden">
+	<div class="container AddMustbedone hidden">
 		<div class="page-header">
 			<h1>必修课添加<small><br/>请填写以下信息</small></h1>
 		</div> 
+		<input type="email" name="courseNamea" style="margin-bottom:20px; width: 90%;" class="form-control" placeholder="课程名"> 
 		 <input type="email" name="classTiem" style="margin-bottom:20px; width: 90%;" class="form-control" placeholder="上课时间"> 
-		 <select style=" width: 90%;height:35px;margin-bottom:20px;l" class="form-control" id="teachers">
+		 <select style=" width: 90%;height:35px;margin-bottom:20px;" class="form-control" id="teachers">
 		  	<option>请选择老师</option>
 		 </select>
-		 <select style=" width: 90%;height:35px;margin-bottom:20px;" class="form-control" id="grades">
+		 <select style=" width: 90%;height:35px;margin-bottom:20px;" class="form-control" id="className">
 		  	<option>请选择班级</option>
 		    <option value="A1">A1</option>
 		    <option value="B2">B2</option>
@@ -77,8 +78,8 @@
 		    <option value="4">四年级</option>
 		 </select>
 		<br />
-		<button type="button" class="btn btn-primary" style="width: 100px;" onclick="Addcurriculum()">提交</button>
-		<button type="button" class="btn btn-primary" style="width: 100px;" onclick="$('.Addcurriculum').addClass('hidden')">关闭</button>
+		<button type="button" class="btn btn-primary" style="width: 100px;" onclick="AddMustbedone()">提交</button>
+		<button type="button" class="btn btn-primary" style="width: 100px;" onclick="$('.AddMustbedone').addClass('hidden')">关闭</button>
 	</div>
 	<p class="container">
 		<button type="button" class="btn btn-primary" style="width: 200px;" onclick="$('.Addclassroom').removeClass('hidden')">添加多媒体教室</button>
@@ -89,7 +90,7 @@
 </body>
 <script>
 var ListTitle=['编号','多媒体教室编号','状态','教室类型','教室大小','操作']
-var ListFeatures={"del":"删除","showAddcourse":"添加选修课程","showCurriculum":"添加必修课程"}
+var ListFeatures={"del":"删除","showAddcourse":"添加选修课程","showAddMustbedone":"添加必修课程"}
 var ListMatch={"types":["普通教室","多媒体教室"],"size":["大","中","小"],"status":["空教室","已安排课程"]}
 showData(1)//请求数据
 function showData(pageNO){
@@ -125,37 +126,35 @@ function del(id){
     });
 }
 
-function Addcurriculum(){
-	var classTiem=$("input[name='classTiem']").val().trim()
+function AddMustbedone(){
+	var courseName=$("input[name='courseNamea']").val().trim()
+	var classroomId=$("input[name='classroomId']").val();
+	var classTime=$("input[name='classTiem']").val().trim()
+	var className=$("#className").val()
 	var teacherid= $("#teachers").val()
-	var teacher= $("#teachers").text()
-	var grade= $("#grades").val()
-	
+	var teacherName=$("#teachers").find('option:selected').text();
+	var grade= $("#grades").val() 
 	$.ajax({
-	     type:'get',
-	     url: "/Academic/Teacher/getName",
-	     datatype: 'json', 
-	     success: function (res) {
-			$.ajax({
-		        type: 'post',
-		        url: "/Academic/Teacher/AddCurriculum",
-		        data:{ "courseId":courseId,"classTime":classTime,"studentIds":studentIds,"teacherId":teacherId,"teachername":res.data},
-		        datatype: 'json',
-		        success: function (res) {
-		        	alert(res.success)
-		        	$("input[name='classTime']").val("")
-		        	var pageNO=$(".pageNO").text()
-		        	showData(pageNO)
-		        }, error:function(err){
-		        	console.log(err);
-		            alert("请求异常")
-		        }
-		    });
-	     }, error:function(err){
-		     	console.log(err);
-		        alert("请求异常")
-		  }
-	});
+        type: 'post',
+        url: "/Academic/office/AddMustbedone",
+        data:{ "courseName":courseName,"classroomId":classroomId,"classTime":classTime,"teacherId":teacherid,"grade":grade,"className":className,"teacherName":teacherName},
+        datatype: 'json',
+        success: function (res) {
+        	alert(res.data)
+        	var pageNO=$(".pageNO").text()
+        	showData(pageNO)
+       		$("input[name='courseNamea']").val("")
+			$("input[name='classroomId']").val("");
+			$("input[name='classTiem']").val("")
+			$("input[name='className']").val("")
+        	var type= $("#teachers").val("请选择老师")
+			var size= $("#className").val("请选择年级")
+			var size= $("#grades").val("请选择年级")
+        }, error:function(err){
+        	console.log(err);
+            alert("请求异常")
+        }
+    });
 }
 
 function Addclassroom(){
@@ -215,7 +214,7 @@ function showAddcourse(id){
         }
 	});
 }
-function showCurriculum(id){
+function showAddMustbedone(id){
 	$.ajax({
         type: 'get',
         url: "/Academic/office/getClassroom",
@@ -232,7 +231,7 @@ function showCurriculum(id){
         			$("#teachers").html(option)
        		  	});
         		$("input[name='classroomId']").val(res.data.className);
-        		$('.Addcurriculum').removeClass('hidden');
+        		$('.AddMustbedone').removeClass('hidden');
         	}else{
         		alert("该教室不是空教室！")
         	}

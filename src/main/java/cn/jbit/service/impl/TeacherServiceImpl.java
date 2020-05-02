@@ -10,6 +10,7 @@ import cn.jbit.entity.Achievement;
 import cn.jbit.entity.Answer;
 import cn.jbit.entity.Course;
 import cn.jbit.entity.Curriculum;
+import cn.jbit.entity.Mustbedone;
 import cn.jbit.entity.Question;
 import cn.jbit.entity.Student;
 import cn.jbit.entity.Teacher;
@@ -98,5 +99,15 @@ public class TeacherServiceImpl implements TeacherService {
 	public int Addachievement(Achievement achievement) {
 		// TODO Auto-generated method stub
 		return teacherDao.Addachievement(achievement);
+	}
+
+	public List<Mustbedone> getMustbedones(int pageNO) {
+		// TODO Auto-generated method stub
+		return teacherDao.getMustbedones(pageNO*8-8, 8);
+	}
+
+	public int getMustbedonesCount() {
+		// TODO Auto-generated method stub
+		return teacherDao.getMustbedonesCount();
 	}
 }

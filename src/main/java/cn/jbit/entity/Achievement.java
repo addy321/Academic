@@ -7,7 +7,7 @@ public class Achievement {
 	private int id;
 	private String subject;
 	private int fraction;
-	private int studentid;
+	private Integer studentid;
 	private Date EntryTime;
 	public int getId() {
 		return id;
@@ -27,10 +27,10 @@ public class Achievement {
 	public void setFraction(int fraction) {
 		this.fraction = fraction;
 	}
-	public int getStudentid() {
-		return studentid;
+	public Integer getStudentid() {
+		return studentid==0?null:studentid;
 	}
-	public void setStudentid(int studentid) {
+	public void setStudentid(Integer studentid) {
 		this.studentid = studentid;
 	}
 	public String getEntryTime() {

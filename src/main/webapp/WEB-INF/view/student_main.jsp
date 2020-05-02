@@ -79,6 +79,7 @@
 				  <li role="presentation"><a href="#" url="Achievement.jsp">成绩查询</a></li>
 				  <li role="presentation"><a href="#" url="Question.jsp">提问</a></li>
 				   <li role="presentation"><a href="#" url="Reply.jsp">问题解答</a></li>
+				   <li role="presentation"><a href="#" url="compulsory.jsp">必修课程表</a></li>
 				</ul> 
 				<iframe style="width:100%;margin-top: 30px;height: 80%;"  frameborder="no" src=""></iframe>
 			</div>

@@ -64,10 +64,31 @@
     </update>
     
     <select id="getAchievements" parameterType="int" resultType="Achievement">
-    		SELECT * FROM `achievement` where studentid=#{id} LIMIT #{pageNO},#{pageSize}
+    		SELECT   `id`,
+			  `subject`,
+			  `fraction`,
+			  `EntryTime`
+			   FROM `achievement` where studentid=#{id} LIMIT #{pageNO},#{pageSize}
     </select>
     
      <select id="getAchievementCount" parameterType="int" resultType="int">
     		SELECT count(*) FROM `achievement` where studentid=#{id} 
     </select>
+    
+    <select id="getMustbedones" resultType="Achievement">
+    	 SELECT `id`,
+		  `courseName`,
+		  `classroomId`,
+		  `classTime`, 
+		  `grade`,
+		  `className`,
+		  `teacherName`
+		   FROM `mustbedone` WHERE `grade`=#{grade} AND `className`=#{className}
+		  LIMIT #{pageNO},#{pageSize}
+    </select>
+    
+    <select id="getStudent" parameterType="int" resultType="Student">
+    SELECT * FROM `student` WHERE id=#{id}
+    </select>
+    
 </mapper>

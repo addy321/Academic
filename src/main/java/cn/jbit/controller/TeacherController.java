@@ -18,6 +18,7 @@ import cn.jbit.entity.Achievement;
 import cn.jbit.entity.Answer;
 import cn.jbit.entity.Course;
 import cn.jbit.entity.Curriculum;
+import cn.jbit.entity.Mustbedone;
 import cn.jbit.entity.Question;
 import cn.jbit.entity.Student;
 import cn.jbit.entity.Teacher;
@@ -195,6 +196,24 @@ public class TeacherController {
 		}else {
 			map.put("success", "录入成功！");
 		}
+		return map;
+	}
+    
+    @ResponseBody
+   	@RequestMapping(value = "/getMustbedones",method=RequestMethod.GET,produces = "application/json;charset=utf-8")
+   	public Map<String,List<Mustbedone>> getMustbedones(Integer pageNO) {
+   		Map<String, List<Mustbedone>> map = new HashMap<String, List<Mustbedone>>();
+   		List<Mustbedone> data=teacherService.getMustbedones(pageNO);
+   		map.put("data", data);
+   		return map;
+   	}
+    
+    @ResponseBody
+	@RequestMapping(value = "/getMustbedonesCount",method=RequestMethod.GET,produces = "application/json;charset=utf-8")
+	public Map<String,Integer> getMustbedonesCount() {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		int count=teacherService.getMustbedonesCount();
+		map.put("data", count);
 		return map;
 	}
 }

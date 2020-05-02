@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import cn.jbit.entity.Achievement;
 import cn.jbit.entity.Curriculum;
+import cn.jbit.entity.Mustbedone;
 import cn.jbit.entity.Question;
 import cn.jbit.entity.Student;
 
@@ -18,4 +19,6 @@ public interface StudentDao {
 	public int UpdateCurriculum(@Param("studentIds")String studentIds,@Param("id")int id);
 	public List<Achievement> getAchievements(@Param("pageNO")int pageNO,@Param("pageSize") int pageSize,@Param("id")int id);
 	public int getAchievementCount(@Param("id")int id);
+	public List<Mustbedone> getMustbedones(@Param("pageNO")int pageNO,@Param("pageSize") int pageSize,@Param("grade")int grade,@Param("className")String className);
+	public Student getStudent(@Param("id")int id);
 }

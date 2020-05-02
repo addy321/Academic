@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import cn.jbit.entity.Announcement;
 import cn.jbit.entity.Classroom;
 import cn.jbit.entity.Course;
+import cn.jbit.entity.Mustbedone;
 import cn.jbit.entity.Office;
 import cn.jbit.entity.Student;
 import cn.jbit.entity.Teacher;
@@ -35,4 +36,5 @@ public interface OfficeDao {
 	public int updateClassrooms(@Param("className")String className);//修改教室状态
 	public Classroom getClassroom(@Param("id")int id,@Param("className")String className);//查询教室
 	public List<Teacher> geTeachersOptions();//查询所有教师
+	public int AddMustbedone(Mustbedone mustbedone);//添加必修课
 } 

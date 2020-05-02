@@ -9,6 +9,7 @@ import cn.jbit.dao.OfficeDao;
 import cn.jbit.entity.Announcement;
 import cn.jbit.entity.Classroom;
 import cn.jbit.entity.Course;
+import cn.jbit.entity.Mustbedone;
 import cn.jbit.entity.Office;
 import cn.jbit.entity.Student;
 import cn.jbit.entity.Teacher;
@@ -133,5 +134,10 @@ public class OfficeServiceImpl implements OfficeService {
 	public List<Teacher> geTeachersOptions() {
 		// TODO Auto-generated method stub
 		return officeDao.geTeachersOptions();
+	}
+
+	public int AddMustbedone(Mustbedone mustbedone) {
+		// TODO Auto-generated method stub
+		return officeDao.AddMustbedone(mustbedone);
 	}
 }

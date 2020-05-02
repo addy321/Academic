@@ -1,5 +1,6 @@
 package cn.jbit.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Mustbedone {
@@ -11,7 +12,15 @@ public class Mustbedone {
 	private String teacherId;
 	private int grade;
 	private String className;
-	
+	private String teacherName;
+	public String getTeacherName() {
+		return teacherName;
+	}
+
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -36,8 +45,9 @@ public class Mustbedone {
 		this.classroomId = classroomId;
 	}
 
-	public Date getClassTime() {
-		return classTime;
+	public String getClassTime() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(classTime);
 	}
 
 	public void setClassTime(Date classTime) {
@@ -71,7 +81,9 @@ public class Mustbedone {
 	@Override
 	public String toString() {
 		return "Mustbedone [id=" + id + ", courseName=" + courseName + ", classroomId=" + classroomId + ", classTime="
-				+ classTime + ", teacherId=" + teacherId + ", grade=" + grade + ", className=" + className + "]";
+				+ classTime + ", teacherId=" + teacherId + ", grade=" + grade + ", className=" + className
+				+ ", teacherName=" + teacherName + "]";
 	}
+
 	
 }

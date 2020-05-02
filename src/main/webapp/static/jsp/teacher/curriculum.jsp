@@ -28,7 +28,7 @@
 			<div class="page-header">
 				<h1>课程申请<small>请填写申请信息内容</small></h1>
 			</div> 
-			 <input type="email" name="classTime" style="margin: 30px 0px; width: 90%;" class="form-control" placeholder="">
+			 <input type="email" name="classTime" style="margin: 30px 0px; width: 90%;" class="form-control" placeholder="上课时间">
 			 <input type="email" name="courseName" disabled="disabled" style="margin: 30px 0px; width: 90%;" class="form-control">
 			<br />
 			<button type="button" class="btn btn-primary" style="width: 100px;" onclick="AddCurriculum()">提交</button>
@@ -39,10 +39,10 @@
 		 </div>
 	</body>
 	<script>
-	var ListTitle=['编号','课程名','状态','上传时间','上课教室',"操作"]
+	var ListTitle=['编号','课程名','状态','上课教室','上传时间',"操作"]
 	var ListMatch={'courseStatus':["可以申请","已被申请"]}
 	var ListFeatures={"showAddCurriculum":"申请课程"}
-	getCount("/Academic/Teacher/getCoursesCount");//请求数量
+	
 		showData(1)//请求数据
 		function showData(pageNO){
 			$.ajax({
@@ -53,6 +53,7 @@
 		        success: function (res) {
 		        	console.log(res.data) 
 		        	var JsonListDate=res.data 
+		        	getCount("/Academic/Teacher/getCoursesCount");//请求数量
 		        	GenerateTable('.showdata',JsonListDate,ListTitle,ListFeatures,ListMatch,pageNO)
 		        }, error:function(err){
 		        	console.log(err);

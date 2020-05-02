@@ -150,4 +150,21 @@ AND q.studentId=#{studentId}
 	        #{studentid},
 	        #{EntryTime});
    </insert>
+   
+    <select id="getMustbedones" resultType="Mustbedone">
+   		SELECT
+		  `id`,
+		  `courseName`,
+		  `classroomId`,
+		  `classTime`,
+		  `grade`,
+		  `className`
+		FROM `academic`.`mustbedone`
+		 LIMIT #{pageNO},#{pagesize}
+   </select>
+   
+   <select id="getMustbedonesCount" resultType="int">
+   	SELECT COUNT(*) FROM `mustbedone`
+   </select>
+   
 </mapper>

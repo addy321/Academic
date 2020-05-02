@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.jbit.entity.Achievement;
 import cn.jbit.entity.Curriculum;
+import cn.jbit.entity.Mustbedone;
 import cn.jbit.entity.Question;
 import cn.jbit.entity.Student;
 import cn.jbit.service.StudentService;
@@ -105,9 +106,10 @@ public class StudentController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "/getAchievements",method=RequestMethod.GET,produces = "application/json;charset=utf-8")
+	@RequestMapping(value = "/getAchievements",method=RequestMethod.GET)
 	public Map<String, List<Achievement>> getAchievements(int pageNO,int id) {
 		Map<String, List<Achievement>> map = new HashMap<String, List<Achievement>>();
+		System.err.println(studentService.getAchievements(pageNO,id));
 		List<Achievement> list= studentService.getAchievements(pageNO,id);
 		map.put("data", list);
 		return map;
@@ -128,4 +130,23 @@ public class StudentController {
     	map.put("data", ((Student) session.getAttribute("student")).getStudentID());
 		return map;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getMustbedones",method=RequestMethod.GET,produces = "application/json;charset=utf-8")
+	public Map<String, List<Mustbedone>> getMustbedones(int pageNO,int grade,String className) {
+		Map<String, List<Mustbedone>> map = new HashMap<String, List<Mustbedone>>();
+		List<Mustbedone> list= studentService.getMustbedones(pageNO,grade,className);
+		map.put("data", list);
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getStudent",method=RequestMethod.GET,produces = "application/json;charset=utf-8")
+	public Map<String, Student> getStudent(int id) {
+		Map<String, Student> map = new HashMap<String, Student>();
+		Student student= studentService.getStudent(id);
+		map.put("data", student);
+		return map;
+	}
+	
 }

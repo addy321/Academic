@@ -5,6 +5,7 @@ import java.util.List;
 import cn.jbit.entity.Announcement;
 import cn.jbit.entity.Classroom;
 import cn.jbit.entity.Course;
+import cn.jbit.entity.Mustbedone;
 import cn.jbit.entity.Office;
 import cn.jbit.entity.Student;
 import cn.jbit.entity.Teacher;
@@ -33,5 +34,6 @@ public interface OfficeService {
 	public Classroom getClassroom(int id,String className);//查询教室
 	public int updateClassrooms(String className);
 	public List<Teacher> geTeachersOptions();//查询所有教师
+	public int AddMustbedone(Mustbedone mustbedone);//添加必修课
 	
 }
